@@ -1,0 +1,42 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isResultado">
+    <mat-spinner *ngIf="isResultado"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="detalhePessoa()">
+      <mat-icon>info</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="pessoaForm" (ngSubmit)="onFormSubmit(pessoaForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ID" readonly formControlName="id"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!pessoaForm.get('id').valid && pessoaForm.get('id').touched">Por favor! Insira o ID.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nome" formControlName="nome"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!pessoaForm.get('nome').valid && pessoaForm.get('nome').touched">Por favor! Insira o nome.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Idade" formControlName="idade"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span
+            *ngIf="!pessoaForm.get('idade').valid && pessoaForm.get('idade').touched">Por favor! Insira a idade.</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!pessoaForm.valid" mat-flat-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
